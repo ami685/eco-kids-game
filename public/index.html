@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+
+  <!-- 🔍 SEO: Updated Title and Description -->
+  <title>Planete Propre  | Jeu de recyclage amusant pour les enfants</title>
+  <meta name="description" content="Play WasteWise by DWaste – a fun and educational recycling game for kids. Teach waste sorting, the 3Rs (Reduce, Reuse, Recycle), and eco-awareness through interactive puzzles and challenges!" />
+  <meta name="keywords" content="recycling game, waste sorting game, educational game for kids, sustainability game, 3Rs game, environmental education, green games for children" />
+
+  <!-- 📱 Mobile App Meta -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon" href="./images/earth-512.png" />
+
+  <!-- 🐦 Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WasteWise Game by DWaste – Learn to Recycle!">
+  <meta name="twitter:description" content="WasteWise is a free web game that teaches children how to sort waste and recycle through fun, drag-and-drop challenges. Play now!">
+  <meta name="twitter:image" content="https://i.imgur.com/9BkIlWO.png">
+
+  <!-- 📘 Open Graph for Facebook and LinkedIn -->
+  <meta property="og:title" content="Play WasteWise – A Fun Recycling Game for Kids" />
+  <meta property="og:description" content="Help children learn the 3Rs: Reduce, Reuse, Recycle with DWaste’s WasteWise Game. Earn Starfish Points, unlock badges, and make learning about waste fun!" />
+  <meta property="og:image" content="https://i.imgur.com/9BkIlWO.png" />
+  <meta property="og:url" content="https://games.dwaste.live" />
+  <meta property="og:type" content="website" />
+
+  <!-- 📚 Font -->
+  <link href="https://fonts.googleapis.com/css?family=Bungee|Freckle+Face|Signika&display=swap" rel="stylesheet" />
+
+  <!-- 📱 PWA Manifest -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+  <!-- 📈 Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-35895078-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-35895078-2');
+  </script>
+
+  <!-- 🧠 JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Planete Propre",
+    "url": "https://games.dwaste.live",
+    "image": "https://i.imgur.com/9BkIlWO.png",
+    "description": "WasteWise is a free, educational web game designed to teach kids about waste sorting, recycling, and environmental awareness in a fun and interactive way.",
+    "author": {
+      "@type": "Organization",
+      "name": "DWaste"
+    },
+    "applicationCategory": "EducationalGame",
+    "genre": ["Educational", "Kids", "Puzzle"],
+    "inLanguage": "en"
+  }
+  </script>
+</head>
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+      <script>
+        if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('worker.js').then(function(registration) {
+            console.log('Worker registration successful', registration.scope);
+          }, function(err) {
+            console.log('Worker registration failed', err);
+          }).catch(function(err) {
+            console.log(err);
+          });
+        });
+      } else {
+        console.log('Service Worker is not supported by browser.');
+      }
+      </script>
+  </body>
+</html>

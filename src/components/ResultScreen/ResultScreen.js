@@ -1,0 +1,104 @@
+import React, {useEffect, useState} from "react";
+import styled from "styled-components";
+import { useNavigate, useSearchParams } from "react-router-dom";
+
+import badges from "../../utils/badgeData";
+import ProgressScore from "../GameScreen/ProgressScore";
+import Button from "../Button";
+
+import FunFactsModal from "../LandingScreen/FunFacts";
+
+import {
+  MessageBox,
+  BadgeBox,
+  BoxMessage,
+  MessageImage,
+  PageHeader,
+  Wrapper,
+  Spacer
+} from "../MasterCss";
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90vw;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 25px;
+`;
+
+const ResultScreen = props => {
+  const [badgeGiven, setBadgeGiven] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const game = searchParams.get('game');
+  const type = searchParams.get('type');
+  useEffect(() => {
+    if (props.count === 1) {
+      setBadgeGiven(4)
+    } else if (props.count >= 5 && props.count < 11) {
+      setBadgeGiven(1);
+    } else if (props.count >= 10 && props.count < 16) {
+      setBadgeGiven(2);
+    } else if (props.count >= 15) {
+      setBadgeGiven(3);
+    }
+  }, [props.count, badgeGiven]);
+
+  const navigate = useNavigate();
+
+
+  const goToCertificate = () => {
+    navigate("/certificate", { state: { count: props.count, badgeGiven } });
+  };
+
+  const restartGame = () => {
+    props.setCount(0);
+    props.setBadCount(0);
+    if(game) {
+      navigate(`/${game}?type=${type}`);
+    }
+    
+  };
+
+  return (
+    <Wrapper>
+      <Spacer/>
+      <Spacer/>
+      <PageHeader nomargin>Bravo !</PageHeader>
+      <Spacer/>
+      <Spacer/>
+      <ProgressScore results count={props.count} />
+      <Spacer/>
+      <BadgeBox>
+        {" "}
+        <MessageImage
+          src={badges[badgeGiven].src}
+          alt="An animal badge to say well done!"
+        />
+        <MessageBox results>
+          <BoxMessage>{props.count}{badges[badgeGiven].message}</BoxMessage>
+        </MessageBox>
+      </BadgeBox>
+      <Spacer/>
+      <Spacer/>
+      <ButtonContainer>
+        {props.funFactsModal && (
+          <FunFactsModal handleClose={props.hideFunFactsModal}></FunFactsModal>
+        )}
+        <Button label="En savoir plus" handleClick={props.showFunFactsModal}>
+          {props.label}
+        </Button>
+        
+         <Button primaryC  label="Obtenir un Certificat" handleClick={goToCertificate}>
+          {props.label}
+        </Button>
+        <Button primary label="Rejouer" handleClick={restartGame}>
+          {props.label}
+        </Button>
+      </ButtonContainer>
+    </Wrapper>
+  );
+};
+
+export default ResultScreen;
